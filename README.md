@@ -1,19 +1,19 @@
 # SwingATM
 This is a group class project
 
-## GUI / Interfaces
+## GUI / Interfaces (RR)
 * Main Window : User will choose what to do. (Withdraw / Deposit / Check Balance / Exit)
 * Withdraw / Deposit Window.  Same window with different text on the buttons.
 * PIN Input
 
 ## Java files / Classes
-  1. ATM.java
-      A. Initializes GUI
-  2. ATMPanel.java
-      a. Builds User Instruction
-      b. Builds User Input Display
-      c. Builds the four button panels
-  3. Account.java
+  1. ATM.java (RR)
+      1. Initializes GUI
+  2. ATMPanel.java (RR)
+      1. Builds User Instruction
+      2. Builds User Input Display
+      3. Builds the four button panels
+  3. Account.java (A)
       1. Attributes
           1. accountNumber
           2. accountPIN
