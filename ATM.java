@@ -1,5 +1,5 @@
 /*
-  Name:  Jesse McWilliams
+  Name:  Jesse McWilliams, Rena Rios
   Prog:  Program 3 – ATM
   Date:  2015-03-31
 */
