@@ -1,10 +1,21 @@
 /*
-  Name:  Jesse McWilliams, Rena Rios
-  Prog:  Program 3 – ATM
+  Name:  Jesse McWilliams, Rena Rios, Alejanro Marquez
+  Prog:  Program 3 â€“ ATM
   Date:  2015-03-31
-*/
-/*
-    Would you like to play a game?
-    Circles
-    Thermo Nuclear War
-*/
+
+import java.util.Scanner;
+import java.util.Random;
+import java.text.NumberFormat;
+
+public class ATM
+
+{
+	public static void main(String[] args)
+	{
+		double Pin = 7777, MaxDeposit, MaxWithdrawl, AccountNumber, Balance = 100;
+		String PrimaryFirstName, PrimaryLastName, PrimaryPrefix, PrimaryDisplay;
+
+		Scanner keyboard = new Scanner(System.in);
+		NumberFormat fmt = NumberFormat.getCurrencyInstance();
+}
+}
