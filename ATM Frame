@@ -1,0 +1,26 @@
+//********************************************************************
+//  Rena Rios     Minilab 8 Buttons
+//  Java Foundations
+//
+//  Demonstrates the use of one listener for multiple buttons.
+//********************************************************************
+
+import javax.swing.JFrame;
+import java.util.Random;
+
+public class ATM
+{
+   //-----------------------------------------------------------------
+   //  Creates and displays the main program frame.
+   //-----------------------------------------------------------------
+   public static void main(String[] args)
+   {
+      JFrame frame = new JFrame("Minilab 8 - Buttons");
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+      frame.getContentPane().add(new ATMPanel());
+
+      frame.pack();
+      frame.setVisible(true);
+   }
+}
