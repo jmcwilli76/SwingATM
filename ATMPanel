@@ -16,7 +16,6 @@ public class ATMPanel extends JPanel
    private JButton b1, b2, b3, b4, b5; //creates the left right buttons from Jframe
    private JLabel label;//creates the label
    private JPanel buttonPanel;//makes the panel
-   private int startValue;//initializes my starting value
    private int answer;
    Random rand = new Random();//Creates my random number
    int randomNum = rand.nextInt((100 - 1) + 1) + 1;//Creates my random number
