@@ -13,8 +13,13 @@ import java.awt.GridLayout;
 import javax.swing.*;
 import java.util.Random;
 
+
+
 public class ATMDisplay extends JPanel
 {
+	  public int startValue = 50;//initialzes the starting value @ 50
+      public JLabel label = new JLabel("" + startValue);
+
      public ATMDisplay()
    {
        JPanel buttonPanel = new JPanel(new FlowLayout());
@@ -27,25 +32,35 @@ public class ATMDisplay extends JPanel
        buttonPanel.setLayout(new FlowLayout());
 
       JButton right= new JButton("Right");
+      right.addActionListener(new ButtonListener());
 	  JButton left = new JButton("Left");
+      left.addActionListener(new ButtonListener());
       JButton center = new JButton("Center");
+      center.addActionListener(new ButtonListener());
+
+
 
       buttonPanel.add(left);
       buttonPanel.add(center);
       buttonPanel.add(right);
 
       frame.add(buttonPanel);
+      frame.add(label);
       frame.setVisible(true);
    }
 
-      private void addButtons(JPanel pnl, int amount)
-      {
-        for(int i=0; i<amount; i++)
-        pnl.add(new JButton("Btn" +1));
-	  }
 
+   private class ButtonListener implements ActionListener
+   {
+	   public void actionPerformed(ActionEvent event)
+      {
+        Object source = event.getSource();
+
+        label.setText("Pushes");
+       }
+   }
       public static void main(String[] args)
       { new ATMDisplay();
    }
-}
+  }
 
