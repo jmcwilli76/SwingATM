@@ -2,7 +2,7 @@
   Name:  Jesse McWilliams, Rena Rios, Alejanro Marquez
   Prog:  Program 3 – ATM
   Date:  2015-03-31
-
+*/
 import java.util.Scanner;
 import java.util.Random;
 import java.text.NumberFormat;
