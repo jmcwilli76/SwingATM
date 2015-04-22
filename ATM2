@@ -10,7 +10,9 @@ import javax.swing.JFrame;
 public class ATM
 {
    //-----------------------------------------------------------------
-   //  Creates and displays the main program frame.
+   //This is the final ATM Java that will get info from the Panel.
+   //
+   //Creates and displays the main program frame.
    //-----------------------------------------------------------------
    public static void main(String[] args)
    {
