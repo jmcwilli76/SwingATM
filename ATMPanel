@@ -1,7 +1,7 @@
 //------------------------------------------------------------
 // Rena Rios Program 3 ATM Java GUI Panel
 //-------------------------------------------------------------
-//****Need info on what needs to be deleted so the frame can 
+//****Need info on what needs to be deleted so the frame can
 //****run this panel. The program won't run.... :(
 //
 //-------------------------------------------------------------
@@ -18,10 +18,10 @@ import java.util.Scanner;
 //----------------------------------------------------------------
 // This is the start of the ATM Display
 //
-//---------------------------------------------------------------- 
-//***Is this where I should add the logic for the buttons? 
 //----------------------------------------------------------------
-public ATMDisplay2()
+//***Is this where I should add the logic for the buttons?
+//----------------------------------------------------------------
+public ATMPanel2()
 	{
 		JLabel label = new JLabel(mystring);//best way I could think of showing the information on the screen.
 		JLabel label2 = new JLabel("INPUT DISPLAY AREA");
@@ -29,7 +29,7 @@ public ATMDisplay2()
 
         JFrame frame = new JFrame();
 		frame.setSize(new Dimension(400,250));
-	    frame.setResizable(false);        //set all frames to false, so they can't resize. 
+	    frame.setResizable(false);        //set all frames to false, so they can't resize.
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.setLayout(new FlowLayout());
 
@@ -110,6 +110,10 @@ public class ATMKeyPad
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.setLayout(new GridLayout(2,2));
 
+      passwordField = new JPasswordField
+      passwordField.setFont(new Font("MS San Serif", Font.BOLD, 30));
+      displayPanel.add(passwordField, BorderLayout.North)
+
       pnlbRight.setBackground(Color.WHITE);
 
       pnlbRight.setLayout(new GridLayout(4,4,5,5));
@@ -151,7 +155,17 @@ public class ATMKeyPad
         pnl.add(new JButton("Btn" +1));
 	  }
 
+      ///got password code from Unit5-ATM Part2/3 Youtube
+
+      JButtons.addActionListener(new ActionListener())
+      {
+       public void actionPerformed(ActionEvent e())
+        {
+          passwordField.setText(e.getActionCommand());
+          System.out.println(e.getActionCommand());
+	    }
+      });
+
       public static void main(String[] args)
       { new ATMKeyPad();
    }
-}
