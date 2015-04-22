@@ -1,7 +1,8 @@
 //------------------------------------------------------------
 // Rena Rios Program 3 ATM Java GUI Panel
-//Need info on what needs to be deleted so the frame can 
-//run this panel. 
+//-------------------------------------------------------------
+//****Need info on what needs to be deleted so the frame can 
+//****run this panel. The program won't run.... :(
 //
 //-------------------------------------------------------------
 
@@ -16,7 +17,9 @@ import java.util.Scanner;
 
 //----------------------------------------------------------------
 // This is the start of the ATM Display
-// Is this where I should add the logic for the buttons? 
+//
+//---------------------------------------------------------------- 
+//***Is this where I should add the logic for the buttons? 
 //----------------------------------------------------------------
 public ATMDisplay2()
 	{
@@ -26,7 +29,7 @@ public ATMDisplay2()
 
         JFrame frame = new JFrame();
 		frame.setSize(new Dimension(400,250));
-	    frame.setResizable(false);//set all frames to false, so they can't resize. 
+	    frame.setResizable(false);        //set all frames to false, so they can't resize. 
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.setLayout(new FlowLayout());
 
