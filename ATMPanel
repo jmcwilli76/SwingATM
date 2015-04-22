@@ -1,5 +1,7 @@
 //------------------------------------------------------------
 // Rena Rios Program 3 ATM Java GUI Panel
+//Need info on what needs to be deleted so the frame can 
+//run this panel. 
 //
 //-------------------------------------------------------------
 
@@ -14,16 +16,17 @@ import java.util.Scanner;
 
 //----------------------------------------------------------------
 // This is the start of the ATM Display
+// Is this where I should add the logic for the buttons? 
 //----------------------------------------------------------------
 public ATMDisplay2()
 	{
-		JLabel label = new JLabel(mystring);
+		JLabel label = new JLabel(mystring);//best way I could think of showing the information on the screen.
 		JLabel label2 = new JLabel("INPUT DISPLAY AREA");
         String mystring = "INSTRUCTIONS AREA/n Please enter your PIN on the numeric keypad or/n Then select one of the options below/n Which function would you like to use?";
 
         JFrame frame = new JFrame();
 		frame.setSize(new Dimension(400,250));
-	    frame.setResizable(false);
+	    frame.setResizable(false);//set all frames to false, so they can't resize. 
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.setLayout(new FlowLayout());
 
