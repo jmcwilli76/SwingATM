@@ -11,6 +11,8 @@ public class ATM
 {
    //-----------------------------------------------------------------
    //This is the final ATM Java that will get info from the Panel.
+   //I'm not understanding how this will pull from the panel so 
+   //at this point it's not running.
    //
    //Creates and displays the main program frame.
    //-----------------------------------------------------------------
