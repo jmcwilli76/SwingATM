@@ -1,21 +1,28 @@
-/*
-  Name:  Jesse McWilliams, Rena Rios, Alejanro Marquez
-  Prog:  Program 3 – ATM
-  Date:  2015-03-31
-*/
-import java.util.Scanner;
-import java.util.Random;
-import java.text.NumberFormat;
+//********************************************************************
+//  Rena Rios     Minilab 8 Buttons
+//  Java Foundations
+//
+//  Demonstrates the use of one listener for multiple buttons.
+//********************************************************************
+import javax.swing.*;
+import java.awt.*;
+import javax.swing.JFrame;
 
 public class ATM
-
 {
-	public static void main(String[] args)
-	{
-		double Pin = 7777, MaxDeposit, MaxWithdrawl, AccountNumber, Balance = 100;
-		String PrimaryFirstName, PrimaryLastName, PrimaryPrefix, PrimaryDisplay;
+   //-----------------------------------------------------------------
+   //  Creates and displays the main program frame.
+   //-----------------------------------------------------------------
+   public static void main(String[] args)
+   {
+      JFrame frame = new JFrame("Minilab 8 - Buttons");
+      frame.setSize(new Dimension(600,400));
+	  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		Scanner keyboard = new Scanner(System.in);
-		NumberFormat fmt = NumberFormat.getCurrencyInstance();
-}
+	  frame.getContentPane().add(new ATMPanel4());
+
+      frame.setVisible(true);
+      ATMPanel4 panel = new ATMPanel4();
+      frame.pack();
+   }
 }
