@@ -15,14 +15,15 @@ public class ATM
    //-----------------------------------------------------------------
    public static void main(String[] args)
    {
-      JFrame frame = new JFrame("Minilab 8 - Buttons");
-      frame.setSize(new Dimension(600,400));
+      JFrame frame = new JFrame("Program 3 - ATM");
 	  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	  ATMPanel5 panel = new ATMPanel5();
+	  frame.add(panel);
 
-	  frame.getContentPane().add(new ATMPanel4());
-
-      frame.setVisible(true);
-      ATMPanel4 panel = new ATMPanel4();
+      
+      
       frame.pack();
+	  frame.setSize(new Dimension(800,600));
+	  frame.setVisible(true);
    }
 }

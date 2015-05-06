@@ -15,19 +15,19 @@ import java.awt.Graphics;
 import javax.swing.*;
 import java.awt.*;
 
-public class ATMPanel4 extends JFrame
+public class ATMPanel5 extends JFrame
 	{
-	  private JPanel ATMKeyPadPanel, displayPanel, actionPanel;
-	  private JButton [] numberButtons = new JButton[10];
+	  private JPanel ATMKeyPadPanel, displayPanel, actionPanel, mainPanel;
+	  private JButton[] numberButtons = new JButton[10];
 	  private JButton enterButton, clearButton, zeroButton;
       private String input="";
       private JButton withdrawButton, withdrawButton2, withdrawButton3, depositButton, quitButton;
-
+	  private boolean pinEntered = false;
       private JPasswordField passwordField;
 
-    public ATMPanel4()
-    {}
-        public displayPanel()
+    //public ATMPanel5()
+    //{}
+    public ATMPanel5()
         {
 			displayPanel = new JPanel();
 			displayPanel.setBackground(Color.CYAN);
@@ -131,6 +131,19 @@ public class ATMPanel4 extends JFrame
 			//      for(int i=0; i<amount; i++)
 			//      pnl.add(new JButton("Btn" +1));
 	        //  }
+			
+			//  *******************************************************
+			//  Create Main Panel mainPanel
+			//  *******************************************************
+			mainPanel = new JPanel();
+			//mainPanel.setLayout(FlowLayout);
+			mainPanel.setPreferredSize(new Dimension(600,600));
+			mainPanel.setBackground(Color.black);
+			//mainPanel.add();  //  User instruction
+			mainPanel.add(displayPanel);
+			//mainPanel.add(actionPanel);
+			//mainPanel.add(ATMKeyPadPanel);
+			mainPanel.setVisible(true);
 		}
 	  class ClearListener implements ActionListener
 	  {
@@ -145,7 +158,7 @@ public class ATMPanel4 extends JFrame
 		  {
 		   public void actionPerformed(ActionEvent e)
 		    {
-		      if(Authentication.authenticatePIN(input))
+		      if(pinEntered)
 		      {
 				  JOptionPane.showMessageDialog(null,"Welcome!");
 			  }
