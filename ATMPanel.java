@@ -16,13 +16,30 @@ public class ATMPanel extends JPanel
 {
   public ATMPanel()
   {  //  This is our constructor.
+    //  Add the instruction area.
+	JLabel lblInstruction = new JLabel("INSTRUCTIONS AREA e.g. Please Enter pin on the numberic keypad");
+	lblInstruction.setVerticalTextPosition(JLabel.CENTER);
+	lblInstruction.setHorizontalTextPosition(JLabel.CENTER);
+	lblInstruction.setBackground(Color.white);
+	lblInstruction.setOpaque(true);
+	lblInstruction.setPreferredSize(new Dimension(350, 200));
+	add(lblInstruction);
+	//  Add the display area.
+	JLabel lblDisplay = new JLabel("Display AREA e.g. Entered text shows up here.");
+	lblDisplay.setVerticalTextPosition(JLabel.CENTER);
+	lblDisplay.setHorizontalTextPosition(JLabel.CENTER);
+	lblDisplay.setBackground(Color.gray);
+	lblDisplay.setOpaque(true);
+	lblDisplay.setPreferredSize(new Dimension(350, 60));
+	add(lblDisplay);
+	//  Create the listener
     ButtonListener listener = new ButtonListener();  //  Create our listener.  This will get passed to the panel classes.
-	JPanel instructionPanel = new instPanel(listener);  //  Call the method to create the instruction panel.
-	JPanel displayPanel = new dispPanel(listener);  //  Call the class to create the display panel.
-	JPanel keypadPanel = new keyPanel(listener);  //  Call the class to create the key pad.
-	add(keypadPanel);  //  Add the panel to the frame.
+	//  Add the Function buttons panel
 	JPanel buttonPanel = new buttPanel(listener);  //  Call the class to create the button panel.
 	add(buttonPanel);  //  Add the panel to the frame.
+	//  Add the keypad buttons panel
+	JPanel keypadPanel = new keyPanel(listener);  //  Call the class to create the key pad.
+	add(keypadPanel);  //  Add the panel to the frame.
   }
 
   
@@ -34,7 +51,8 @@ public class ATMPanel extends JPanel
 	  ATMPanel panel = new ATMPanel();  //  Create an object from our ATMPanel.
 	  frame.getContentPane().add(panel);  //  Add the newly created panel to the Frame.
       frame.pack();  //  This uses the layout manager to calculate the minimum size.
-	  frame.setSize(new Dimension(800,600));  //  This over rides the layout managers min size.  Needs to be after pack.
+	  frame.setSize(new Dimension(400,450));  //  This over rides the layout managers min size.  Needs to be after pack.
+	  frame.setResizable(false);  //  Stops the window from being resized.
 	  frame.setVisible(true);  //  Set the window to visible.
 	}
   
@@ -48,24 +66,6 @@ public class ATMPanel extends JPanel
      {
 	    //  This is where the logic goes.  ******************************************************************
      }
-  }
-
-  //  Instruction Panel
-  private class instPanel extends JPanel
-  {
-    public instPanel(ButtonListener listener)
-	{
-	  
-	}
-  }
-
-  //  Display Panel
-  private class dispPanel extends JPanel
-  {
-    public dispPanel(ButtonListener listener)
-	{
-	  
-	}
   }
 
   //  Key Pad Panel
@@ -115,29 +115,49 @@ public class ATMPanel extends JPanel
 	  b0.addActionListener(listener);
 	  clear.addActionListener(listener);
 	  enter.addActionListener(listener);
+	  //  Add this panel to the calling panel
+	  add(pnlbRight);
 	}
 
 	}  //  Button Panel
   private class buttPanel extends JPanel
   {
     public buttPanel(ButtonListener listener)
-	{
+	{  //  Create the inner panel
 	  JPanel pnlbLeft = new JPanel();
+	  //  Set the layout manager
+	  pnlbLeft.setLayout(new BoxLayout(pnlbLeft, BoxLayout.Y_AXIS));
 	  //  Create the buttons
-	  JButton withdraw1 = new JButton("$10 Withdraw");
-	  JButton withdraw2 = new JButton("$20 Withdraw");
-	  JButton withdraw3 = new JButton("$40 Withdraw");
-	  JButton deposit = new JButton("Deposit");
+	  JButton withdraw1 = new JButton("1st Withdraw  ");
+	  JButton withdraw2 = new JButton("2nd Withdraw ");
+	  JButton withdraw3 = new JButton("3rd Withdraw  ");
+	  JButton deposit = new JButton("      Deposit       ");
+	  JButton quit = new JButton("          Quit          ");
+	  //  Set the button size
+	  int xCord = 150;
+	  int yCord = 40;
+	  //withdraw1.setPreferredSize(new Dimension(xCord, yCord));
+	  //withdraw2.setPreferredSize(new Dimension(xCord, yCord));
+	  //withdraw3.setPreferredSize(new Dimension(xCord, yCord));
+	  //deposit.setPreferredSize(new Dimension(xCord, yCord));
+	  //quit.setPreferredSize(new Dimension(xCord, yCord));
 	  //  Add the buttons
 	  pnlbLeft.add(withdraw1);
 	  pnlbLeft.add(withdraw2);
 	  pnlbLeft.add(withdraw3);
 	  pnlbLeft.add(deposit);
+	  pnlbLeft.add(quit);
 	  //  Add the listenre
 	  withdraw1.addActionListener(listener);
 	  withdraw2.addActionListener(listener);
 	  withdraw3.addActionListener(listener);
 	  deposit.addActionListener(listener);
+	  quit.addActionListener(listener);
+	  //  Set default size of panel
+	  pnlbLeft.revalidate();
+	  //pnlbLeft.setSize(new Dimension(xCord,5 * yCord));
+	  //  Add this panel to the calling panel
+	  add(pnlbLeft);
 
 	}
   }
