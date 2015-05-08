@@ -10,6 +10,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.util.concurrent.TimeUnit;
 
 //  Declare our class
 public class ATMPanel extends JPanel
@@ -21,6 +22,8 @@ public class ATMPanel extends JPanel
   //  The JLabel allows HTML code.  So we use it to give a nicer looking text message.
   private String strWelcomeMessage = "<html><center>Welcome<br>To Team #2's<br>Swing ATM program!<br>Written by:<br>Jesse<br>Rena<br>and<br>Alejandro<br><br>Please enter your pin number<br><br>Please use the on screen keypad.</center>";
   private String strDisplayText = "";
+  private Account activeAccount;
+  private int intInvalidPIN = 0;
   public ATMPanel()
   {  //  This is our constructor.
     //  Add the instruction area.
@@ -49,6 +52,7 @@ public class ATMPanel extends JPanel
 	//  Add the keypad buttons panel
 	keypadPanel = new keyPanel(listener);  //  Call the class to create the key pad.
 	add(keypadPanel);  //  Add the panel to the frame.
+	listener.initialize();
   }
 
   
@@ -77,17 +81,17 @@ public class ATMPanel extends JPanel
 	    String strButtonPressed = ((JButton) event.getSource()).getText().trim();
 		if (strButtonPressed == "Quit")
 		{  //  The user has clicked the Quit button.  Re initialize.
-		  
+		  initialize();
 		}
-		if (boolPinEntered && strButtonPressed == "1st Withdraw")
+		if (boolPinEntered && strButtonPressed == "Withdraw $20")
 		{  //  Only check the button if the PIN has been entered.
 		  
 		}
-		else if (boolPinEntered && strButtonPressed == "2nd Withdraw")
+		else if (boolPinEntered && strButtonPressed == "Withdraw $50")
 		{  //  Only check the button if the PIN has been entered.
 		  
 		}
-		else if (boolPinEntered && strButtonPressed == "3rd Withdraw")
+		else if (boolPinEntered && strButtonPressed == "Withdraw $100")
 		{  //  Only check the button if the PIN has been entered.
 		  
 		}
@@ -101,27 +105,71 @@ public class ATMPanel extends JPanel
 		}
 		else if (strButtonPressed == "Enter")
 		{  //  Submit the input string to the next function.
-		  
+		  if (boolPinEntered)
+		  {  //  The pin has been entered.  Check action state.
+			  
+		  }
+		  else if (!strInputText.equals(""))
+		  {  //  The pin hasn't been entered.  Validate pin.
+			  if (verifyPIN(activeAccount, strInputText))
+			  {
+				  boolPinEntered = true;
+				  strInputText = "";
+				  displayText(strInputText);
+				  lblInstruction.setText("<html><center>Greetings<br>Mr Chris Santos.<br>Please select the action.");
+				  //  Enable Withdraw and Deposit buttons
+				  //buttonPanel.enableButtons("All");
+			  }
+			  else
+			  {
+				  boolPinEntered = false;
+				  intInvalidPIN++;
+				  strInputText = "";
+				  displayText(strInputText);
+				  lblInstruction.setText("<html><center>Invalid PIN Entered!<br>Please enter the Valid PIN.");
+				  if (intInvalidPIN > 2)
+				  {
+					  strInputText = "";
+					  displayText(strInputText);
+					  lblInstruction.setText("<html><center>Invalid PIN Entered!<br>Max tries reached.<br>Exiting!");
+					  pleaseWait(5000);
+					  System.exit(0);
+				  }
+			  }
+		  }
 		}
 		else
 		{  //  Append to the input string.
 		  strInputText = strInputText + strButtonPressed;
 		}
 	    displayText(strInputText);
+
      }
-	 public void verifyPIN(Account currentAccount, String PIN)
+//  *******************  End Listener  **********************************
+
+	 public void pleaseWait(int intWait)
+	 {
+	 try
+	 {
+	   Thread.sleep(intWait);
+	 }
+	 catch (InterruptedException e) {}
+	 }
+	 public boolean verifyPIN(Account currentAccount, String PIN)
 	 {  //  This method will verify the PIN number with the account.
 	   int intPIN = Integer.parseInt(PIN);
+	   boolean boolRet = false;
 	   if (currentAccount.getAccountPIN() == intPIN)
 	   {
-	     boolPinEntered = true;
-		 buttonPanel.enableButtons();
+	     boolRet = true;
+		 //buttonPanel.enableButtons();
 	   }
 	   else
 	   {
-	     boolPinEntered = false;
-		 buttonPanel.disableButtons();
+	     boolRet = false;
+		 //buttonPanel.disableButtons();
 	   }
+	   return boolRet;
 	 }
 	 public void displayText(String InputText)
 	 {  //  This method will update the text to be displayed.
@@ -131,8 +179,21 @@ public class ATMPanel extends JPanel
 	   }
 	   else
 	   {
-	     lblDisplay.setText(InputText);
+	     lblDisplay.setText(InputText.replaceAll("[0-9]","X"));
 	   }
+	 }
+	 public void initialize()
+	 {  //  This will initialize the default settings.
+		 boolPinEntered = false;
+		 strInputText = "";
+		 strDisplayText = "";
+		 lblInstruction.setText(strWelcomeMessage);
+		 activeAccount = new Account(123456789, 7777, "Chris", "Santos");
+		 activeAccount.setPrimaryDisplay("Mr. Chris Santos");
+		 activeAccount.setPrimaryPrefix("Mr");
+		 activeAccount.setaccountBalance(100);
+		 activeAccount.setmaxWithdrawal(300);
+		 activeAccount.setmaxDeposit(1000);
 	 }
   }
   //  **********  This is the button listener where all of the action will be performed.  **********
@@ -201,11 +262,11 @@ public class ATMPanel extends JPanel
 	  //  Set the layout manager
 	  pnlbLeft.setLayout(new BoxLayout(pnlbLeft, BoxLayout.Y_AXIS));
 	  //  Create the buttons
-	  JButton withdraw1 = new JButton("1st Withdraw  ");
-	  JButton withdraw2 = new JButton("2nd Withdraw ");
-	  JButton withdraw3 = new JButton("3rd Withdraw  ");
-	  JButton deposit = new JButton("      Deposit       ");
-	  JButton quit = new JButton("          Quit          ");
+	  JButton withdraw1 = new JButton("Withdraw $20   ");
+	  JButton withdraw2 = new JButton("Withdraw $50   ");
+	  JButton withdraw3 = new JButton("Withdraw $100");
+	  JButton deposit = new JButton("       Deposit        ");
+	  JButton quit = new JButton("           Quit           ");
 	  //  Set the button size
 	  int xCord = 150;
 	  int yCord = 40;
@@ -237,25 +298,20 @@ public class ATMPanel extends JPanel
 	  //  Add this panel to the calling panel
 	  add(pnlbLeft);
 	}
-	public void enableButtons()
+	public void enableButtons(String button)
 	{  //  Allow all the buttons to be disabled.
 	  withdraw1.setEnabled(true);
 	  withdraw2.setEnabled(true);
 	  withdraw3.setEnabled(true);
 	  deposit.setEnabled(true);
 	}
-	public void disableButtons()
+	public void disableButtons(String button)
 	{  //  Allow all the buttons to be enabled.
 	  withdraw1.setEnabled(false);
 	  withdraw2.setEnabled(false);
 	  withdraw3.setEnabled(false);
 	  deposit.setEnabled(false);
 	}
-	public void disableWithdrawl()
-	{  //  Disable all of the Withdraw buttons.
-	  withdraw1.setEnabled(false);
-	  withdraw2.setEnabled(false);
-	  withdraw3.setEnabled(false);
-	}
+
   }
 }
